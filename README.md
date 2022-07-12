@@ -1,0 +1,1 @@
+# merge-global-local-settings-action
