@@ -12,9 +12,12 @@ $localSettingsYml = getenv('localSettingsYml') ?: $argv[2];
 
 use Symfony\Component\Yaml\Yaml;
 
-$globalSettingsYml = Yaml::parse($globalSettingsYml);
-$localSettingsYml = Yaml::parse($localSettingsYml);
+$globalSettingsYml = Yaml::parse(file_get_contents($globalSettingsYml));
+$localSettingsYml = Yaml::parse(file_get_contents($localSettingsYml));
 $mergedSettingsYml = $globalSettingsYml;
+echo 'local' . $localSettingsYml;
+echo '   global' . $globalSettingsYml;
+echo '    merged' . $mergedSettingsYml;
 
 foreach($globalSettingsYml as $key => $value)
 {
