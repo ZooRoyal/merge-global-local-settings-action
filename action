@@ -15,9 +15,9 @@ use Symfony\Component\Yaml\Yaml;
 $globalSettingsYml = Yaml::parse(file_get_contents($globalSettingsYml));
 $localSettingsYml = Yaml::parse(file_get_contents($localSettingsYml));
 $mergedSettingsYml = $globalSettingsYml;
-echo 'local' . $localSettingsYml;
-echo '   global' . $globalSettingsYml;
-echo '    merged' . $mergedSettingsYml;
+print_r('local. ' . $localSettingsYml);
+print_r('   global' . $globalSettingsYml);
+print_r('    merged' . $mergedSettingsYml);
 
 foreach($globalSettingsYml as $key => $value)
 {
