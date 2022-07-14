@@ -7,8 +7,8 @@ if(file_exists(__DIR__.'/vendor/autoload.php')) {
     require __DIR__.'/../../autoload.php';
 }
 
-$globalSettingsYml = getenv('globalSettingsYml') ?: $argv[1];
-$localSettingsYml = getenv('localSettingsYml') ?: $argv[2];
+$globalSettingsYml = getenv('globalSettingsYml') ?getenv('globalSettingsYml') : $argv[1];
+$localSettingsYml = getenv('localSettingsYml') ?getenv('localSettingsYml'): $argv[2];
 
 use Symfony\Component\Yaml\Yaml;
 
