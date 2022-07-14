@@ -2,10 +2,10 @@
 name: 'Name: Merge Local settings yml with the global one'
 description: 'Description: Merge Local settings yml with the global one'
 inputs:
-  globalSettingYml:
+  globalSettingsYml:
     description: 'the global settings yml for repo'
     required: true
-  localSettingYml:
+  localSettingsYml:
     description: 'the local settings yml for repo'
     required: true
 outputs:
