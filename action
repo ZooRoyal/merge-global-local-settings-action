@@ -7,17 +7,34 @@ if(file_exists(__DIR__.'/vendor/autoload.php')) {
     require __DIR__.'/../../autoload.php';
 }
 
-$globalSettingsYml = getenv('globalSettingsYml') ?getenv('globalSettingsYml') : $argv[1];
+//$globalSettingsYml = getenv('globalSettingsYml') ?getenv('globalSettingsYml') : $argv[1];
 $localSettingsYml = getenv('localSettingsYml') ?getenv('localSettingsYml'): $argv[2];
+$token = getenv('GHA_TOKEN')?getenv('GHA_TOKEN'): $argv[3];
+$user = getenv('GHA_USER')?getenv('GHA_USER'): $argv[4];
 
 use Symfony\Component\Yaml\Yaml;
 
-$globalSettingsYml = Yaml::parse(file_get_contents($globalSettingsYml));
+$url = "https://api.github.com/repos/ZooRoyal/GlobalRepoManagerSettings/contents/.github/settings-global.yml";
+
+$ch = curl_init();
+curl_setopt_array($ch, [
+    CURLOPT_URL => $url,
+    CURLOPT_HTTPHEADER => [
+        "Accept: application/vnd.github.v3+json",
+        "Content-Type: text/plain",
+        "Authorization: token " . $token,
+        "User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 YaBrowser/16.3.0.7146 Yowser/2.5 Safari/537.36"
+    ],
+    CURLOPT_RETURNTRANSFER => true,
+]);
+$response = curl_exec($ch);
+curl_close($ch);
+
+$globalSettingsYml = Yaml::parse(base64_decode($response));
 $localSettingsYml = Yaml::parse(file_get_contents($localSettingsYml));
 $mergedSettingsYml = $globalSettingsYml;
 print_r('local. ' . $localSettingsYml);
 print_r('   global' . $globalSettingsYml);
-print_r('    merged' . $mergedSettingsYml);
 
 foreach($globalSettingsYml as $key => $value)
 {

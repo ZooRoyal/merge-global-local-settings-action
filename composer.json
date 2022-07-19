@@ -11,6 +11,11 @@
     ],
     "require": {
         "symfony/yaml": "v5.4.10",
-        "php": ">=7.4"
+        "php": ">=7.4",
+        "ext-curl": "*",
+        "knplabs/github-api": "^3.7",
+        "guzzlehttp/guzzle": "^7.4",
+        "php-http/guzzle7-adapter": "^1.0",
+        "ext-json": "*"
     }
 }

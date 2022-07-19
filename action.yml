@@ -8,6 +8,12 @@ inputs:
   localSettingsYml:
     description: 'the local settings yml for repo'
     required: true
+  token:
+    description: 'token for repo'
+    required: true
+  user:
+    description: 'user for repo'
+    required: true
 outputs:
   mergedSettingsYml:
     description: 'the merged settings yml for repo'
@@ -17,3 +23,5 @@ runs:
   args:
     - ${{ inputs.globalSettingsYml }}
     - ${{ inputs.localSettingsYml }}
+    - ${{ inputs.token }}
+    - ${{ inputs.user }}
