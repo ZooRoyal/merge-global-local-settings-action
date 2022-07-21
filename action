@@ -29,14 +29,14 @@ curl_setopt_array($ch, [
 ]);
 $response = curl_exec($ch);
 curl_close($ch);
-//print_r($response);
+var_dump($response);
 $file_content = json_decode($response, true);
-
+var_dump($file_content);
 $globalSettingsYml = Yaml::parse(base64_decode($file_content['content']));
 $localSettingsYml = Yaml::parse(file_get_contents($localSettingsYml));
 $mergedSettingsYml = $globalSettingsYml;
 //print_r('local. ' . $localSettingsYml);
-print_r('   global' . $globalSettingsYml);
+print_r('   global hier ' . $globalSettingsYml);
 
 foreach($globalSettingsYml as $key => $value)
 {
@@ -45,4 +45,5 @@ foreach($globalSettingsYml as $key => $value)
         $mergedSettingsYml[$key] = $localSettingsYml[$key];
     }
 }
+echo ' output    ';
 echo '::set-output name=mergedSettingsYml::' . json_encode($mergedSettingsYml);
