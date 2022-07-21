@@ -29,14 +29,14 @@ curl_setopt_array($ch, [
 ]);
 $response = curl_exec($ch);
 curl_close($ch);
-print_r($response);
+//print_r($response);
 $file_content = json_decode($response, true);
 
 $globalSettingsYml = Yaml::parse(base64_decode($file_content['content']));
 $localSettingsYml = Yaml::parse(file_get_contents($localSettingsYml));
 $mergedSettingsYml = $globalSettingsYml;
 //print_r('local. ' . $localSettingsYml);
-//print_r('   global' . $globalSettingsYml);
+print_r('   global' . $globalSettingsYml);
 
 foreach($globalSettingsYml as $key => $value)
 {
