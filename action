@@ -32,7 +32,7 @@ $file_content = json_decode($response, true);
 
 $globalSettingsYml = Yaml::parse(base64_decode($file_content['content']));
 $localSettingsYml = Yaml::parse(file_get_contents($localSettingsYml));
-$mergedSettingsYml = $globalSettingsYml;
+$mergedSettingsYml = [];
 
 foreach($globalSettingsYml as $key => $value)
 {
