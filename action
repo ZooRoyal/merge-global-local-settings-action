@@ -28,20 +28,18 @@ curl_setopt_array($ch, [
 ]);
 $response = curl_exec($ch);
 curl_close($ch);
-//var_dump($response);
 $file_content = json_decode($response, true);
-//var_dump($file_content);
+
 $globalSettingsYml = Yaml::parse(base64_decode($file_content['content']));
 $localSettingsYml = Yaml::parse(file_get_contents($localSettingsYml));
 $mergedSettingsYml = $globalSettingsYml;
-var_dump($localSettingsYml);
-//var_dump($globalSettingsYml);
 
 foreach($globalSettingsYml as $key => $value)
 {
-    if(array_key_exists($key, $localSettingsYml))
-    {
+    if (array_key_exists($key, $localSettingsYml)) {
         $mergedSettingsYml[$key] = $localSettingsYml[$key];
+    } else {
+        $mergedSettingsYml[$key] = $value;
     }
 }
 echo ' from here output    ';
