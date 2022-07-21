@@ -34,6 +34,8 @@ $globalSettingsYml = Yaml::parse(base64_decode($file_content['content']));
 $localSettingsYml = Yaml::parse(file_get_contents($localSettingsYml));
 $mergedSettingsYml = [];
 
+var_dump($globalSettingsYml);
+
 foreach($globalSettingsYml as $key => $value)
 {
     if (array_key_exists($key, $localSettingsYml)) {
