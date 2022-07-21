@@ -2,9 +2,6 @@
 name: 'Name: Merge Local settings yml with the global one'
 description: 'Description: Merge Local settings yml with the global one'
 inputs:
-  globalSettingsYml:
-    description: 'the global settings yml for repo'
-    required: true
   localSettingsYml:
     description: 'the local settings yml for repo'
     required: true
@@ -21,7 +18,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.globalSettingsYml }}
     - ${{ inputs.localSettingsYml }}
     - ${{ inputs.token }}
     - ${{ inputs.user }}
