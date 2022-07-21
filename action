@@ -7,10 +7,9 @@ if(file_exists(__DIR__.'/vendor/autoload.php')) {
     require __DIR__.'/../../autoload.php';
 }
 
-//$globalSettingsYml = getenv('globalSettingsYml') ?getenv('globalSettingsYml') : $argv[1];
-$localSettingsYml = getenv('localSettingsYml') ?getenv('localSettingsYml'): $argv[2];
-$token = getenv('GHA_TOKEN')?getenv('GHA_TOKEN'): $argv[3];
-$user = getenv('GHA_USER')?getenv('GHA_USER'): $argv[4];
+$localSettingsYml = getenv('localSettingsYml') ?getenv('localSettingsYml'): $argv[1];
+$token = getenv('GHA_TOKEN')?getenv('GHA_TOKEN'): $argv[2];
+$user = getenv('GHA_USER')?getenv('GHA_USER'): $argv[3];
 
 use Symfony\Component\Yaml\Yaml;
 
@@ -35,8 +34,8 @@ $file_content = json_decode($response, true);
 $globalSettingsYml = Yaml::parse(base64_decode($file_content['content']));
 $localSettingsYml = Yaml::parse(file_get_contents($localSettingsYml));
 $mergedSettingsYml = $globalSettingsYml;
-//print_r('local. ' . $localSettingsYml);
-var_dump($globalSettingsYml);
+var_dump($localSettingsYml);
+//var_dump($globalSettingsYml);
 
 foreach($globalSettingsYml as $key => $value)
 {
